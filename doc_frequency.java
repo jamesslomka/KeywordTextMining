@@ -91,8 +91,7 @@ public class DocumentFrequency {
         }
         return words;
     }
-
-
+    
     public static void writeDocumentFrequencies(HashMap<String, Integer> dfs, String filename) {
 
         try{
@@ -111,7 +110,7 @@ public class DocumentFrequency {
 
 
             for(int counter = 0; counter < words.length; counter++){
-                //WORKING CODE:
+                // Working code:
                 // bw.write(words[counter] + " " + numbers[counter] + "\n");
 
                 // Code below is formatted to columns
@@ -129,6 +128,4 @@ public class DocumentFrequency {
     public static String normalize(String word) {
         return word.replaceAll("[^a-zA-Z ']", "").toLowerCase();
     }
-
-
 }
