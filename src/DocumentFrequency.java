@@ -1,20 +1,28 @@
-// James Slomka
-// 260626090
-// I worked alone
 import java.util.*;
 import java.io.*;
 import java.util.HashSet;
 
+/**
+*  This class is to be run first. Does all preprocessing.
+*  Extracts and writes key,value pairs where k: unique word, v: frequency
+*
+*/
 public class DocumentFrequency {
 
     public static void main(String[] args) {
-        String dir = args[0]; // name of directory with input files
-        System.out.println(dir);
+        String dir = "../docs";// name of directory with input files
         HashMap<String, Integer> dfs;
         dfs = extractDocumentFrequencies(dir, 40);
-        writeDocumentFrequencies(dfs,"freqs.txt");
+        writeDocumentFrequencies(dfs,"../output/frequency.txt");
     }
 
+    /**
+    *
+    * @param String directory: docs folder that has the .txt files of all documents to iterate
+    * @param int nDocts: number of documents in folder
+    * @return HashMap<String,Integer> key,val pair of words with their overall frequency
+    *
+    */
     public static HashMap<String, Integer> extractDocumentFrequencies(String directory, int nDocs) {
         // Creating a new HashMap to store the (word, frequency)
         HashMap<String,Integer> wordFreq = new HashMap<String,Integer>();
@@ -25,7 +33,7 @@ public class DocumentFrequency {
         for(int counter = 1; counter<= nDocs; counter++){
             // Populating 'allWords' with the unique words found the directory (which increases by 1 each loop)
 
-            allWords = extractWordsFromDocument(dir +"/" + counter + ".txt");
+            allWords = extractWordsFromDocument(dir +"/" + counter + ".txt");  // Method that returns a HashSet of all the unique words in a document
 
             // Creating array list of all the unique words found in the file
             String words[] = allWords.toString().replaceAll("[^a-zA-Z ']", "").toLowerCase().trim().split(" ");
@@ -35,11 +43,11 @@ public class DocumentFrequency {
                 for(int c = 0; c < allWords.size();c++){
                     wordFreq.put(words[c],1);
                 }
-            }
+            }    // Method that returns a HashSet of all the unique words in a document
             else{
                 for(int c = 0; c < allWords.size();c++){
                     // If a pre-existing word is found, increment the value
-                    if(wordFreq.containsKey(words[c])){
+                    if(wordFreq.containsKey(words[c])) {
                         int val = wordFreq.get(words[c]);
                         val++;
                         wordFreq.put(words[c],val);
@@ -53,9 +61,10 @@ public class DocumentFrequency {
         }
         return wordFreq;
     }
+
     // Method that returns a HashSet of all the unique words in a document
     public static HashSet<String> extractWordsFromDocument(String filename) {
-        // Declaring new HashSet
+
         HashSet<String> words = new HashSet<String>();
 
         try{
@@ -66,13 +75,13 @@ public class DocumentFrequency {
 
                 line = normalize(line);
 
-                // Splitting the words up after a space
+                // Splitting the words up after a spacefilename
                 String [] temp = line.split(" ");
 
                 for(int counter = 0; counter <temp.length; counter ++){
                     // Trimming the leading and following whitespace
                     temp[counter] = temp[counter].trim();
-                    // Omitting any blank entries and adding correct entry to HashSet
+                    // Omitting any blank entries and adding correct        // Declaring new HashSet entry to HashSet
                     if(temp[counter].equals("") || temp[counter].equals(" ")  || temp[counter].equals("'")){
                         continue;
                     }
@@ -87,11 +96,12 @@ public class DocumentFrequency {
             fr.close();
         }
         catch(IOException e){
-            System.out.println("*** IO error! [While reading] ***");
+            System.out.println("*** IO e    // Method that returns a HashSet of all the unique words in a documentrror! [While reading] ***");
         }
         return words;
     }
-    
+
+    // Writes document frequncy to file
     public static void writeDocumentFrequencies(HashMap<String, Integer> dfs, String filename) {
 
         try{

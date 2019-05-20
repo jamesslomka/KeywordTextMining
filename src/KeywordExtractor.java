@@ -1,10 +1,11 @@
-// James Slomka
-// 260262090
-// I worked alone
 import java.util.*;
 import java.io.*;
 
 public class KeywordExtractor {
+
+  /**
+  *   This class does all logic of computing tf-idf scores.
+  */
     public static void main(String[] args) {
         // This code allows you to have the correct output (for all 40 files), plus 1.txt,2.txt...etc headers when program runs
         /*
@@ -15,33 +16,34 @@ public class KeywordExtractor {
             System.out.println("\n");
         }
         */
-        
-        // This code allows you to run the code through the command interface
-        // i.e. run KeywordExractor docs
-        String dir = args[0]; // name of directory with input files
+
+        // This code allows you to run the // Method that returns a HashSet of all the unique words in a documentcode through the command interface
+        // i.e. run KeywordExractor
+
         for(int counter =1; counter<=40;counter++) {
             System.out.println(counter +".txt");
-            HashMap<String, Double> j = computeTFIDF(computeTermFrequencies(dir+"/"+counter+".txt"), readDocumentFrequencies(dir+"/freqs.txt"), 40);
+            HashMap<String, Double> j = computeTFIDF(computeTermFrequencies("../docs/"+counter+".txt"), readDocumentFrequencies("../output/frequency.txt"), 40);
             printTopKeywords(j, 5);
             System.out.print("\n");
         }
-        
+
     }
+
     // This method takes a file name as input and returns a HashMap of the term frequencies of each word
     // (How many times a word is found in that document)
     public static HashMap<String, Integer> computeTermFrequencies(String filename) {
         HashMap<String,Integer> words = new HashMap<String,Integer>();
-        
+
         try{
             FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
+            BufferedReader br = new BufferedReader(fr);printTopKeywords
             String line = br.readLine();
             while(line != null){
                 line = normalize(line);
 
                 String [] temp = line.split(" ");
 
-                for(int counter = 0; counter < temp.length; counter++){
+                for(int counter = 0; counter < tecomputeTermFrequenciesmp.length; counter++){
                     temp[counter] = temp[counter].trim();
 
                     if(words.containsKey(temp[counter])){
@@ -56,7 +58,7 @@ public class KeywordExtractor {
                 }
                 line = br.readLine();
             }
-        }
+        }computeTermFrequencies
         catch(IOException e){
             System.out.println("IO ERROR! [While Reading]");
         }
@@ -69,7 +71,7 @@ public class KeywordExtractor {
         HashMap<String,Integer> wordFreq = new HashMap<String,Integer>();
         // Tacking on .txt to filename
         //filename = filename +".txt";
-      
+
         try{
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
@@ -95,16 +97,16 @@ public class KeywordExtractor {
     }
 
     public static HashMap<String, Double> computeTFIDF(HashMap<String, Integer> tfs, HashMap<String, Integer> dfs, double nDocs){
-        // TF-IDF score: (w, d) = tf(w, d) ? idf(w)
+        // TF-IDF score: (w, d) = tf(w, d) / idf(w)
 
         HashMap<String,Double> score = new HashMap<String,Double>();
-        
+
         //Calculating TF score:
         //Array to hold the frequency of each term in the input file
         int[] tfval = new int[tfs.size()];
 
         int counter =0;
-        for(String key: tfs.keySet()){
+        for(String key: tfs.keySet()){computeTermFrequencies
            int val = tfs.get(key);
             tfval[counter] = val;
             //System.out.println(tfval[counter]);
@@ -112,9 +114,9 @@ public class KeywordExtractor {
         }
         //Array to hold the each term in the input file
         String[] tfkey = new String[tfs.size()];
-        
+
         int count =0;
-        for(String key: tfs.keySet()){
+        for(String key: tfs.keySet()){// Method that returns a HashSet of all the unique words in a document
             tfkey[count] = key;
            // System.out.println(tfkey[count]);
             count ++;

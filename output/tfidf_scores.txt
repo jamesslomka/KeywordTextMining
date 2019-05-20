@@ -278,7 +278,3 @@ magnitude 59.02207126582298
 lightyears 59.02207126582298
 constellation 36.88879454113936
 
-
-How did your algorithm work?
-
-I believe my algorithm worked correctly and computed the proper information very quickly. Not really sure what else to say, other than I think my algorithms worked and I’m very pleased with my work.
