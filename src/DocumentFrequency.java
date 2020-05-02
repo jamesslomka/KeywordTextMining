@@ -40,7 +40,7 @@ public class DocumentFrequency {
                     wordFreq.put(words[c],1);
                 }
             }
-            else{
+            else {
                 for(int c = 0; c < allWords.size();c++){
                     // If a pre-existing word is found, increment the value
                     if(wordFreq.containsKey(words[c])) {
@@ -61,8 +61,7 @@ public class DocumentFrequency {
     public static HashSet<String> extractWordsFromDocument(String filename) {
 
         HashSet<String> words = new HashSet<String>();
-
-        try{
+        try {
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
@@ -85,8 +84,7 @@ public class DocumentFrequency {
             }
             br.close();
             fr.close();
-        }
-        catch(IOException e){
+        } catch(IOException e){
             System.out.println("*** IO Errror - Reading File ***");
         }
         return words;
@@ -94,7 +92,7 @@ public class DocumentFrequency {
 
     public static void writeDocumentFrequencies(HashMap<String, Integer> dfs, String filename) {
 
-        try{
+        try {
             FileWriter fw = new FileWriter(filename);
             BufferedWriter bw = new BufferedWriter(fw);
 
@@ -113,8 +111,7 @@ public class DocumentFrequency {
             // }
             bw.close();
             fw.close();
-        }
-        catch (IOException e ) {
+        } catch (IOException e ) {
             System.out.println("*** IO error! Writing File ***");
         }
     }

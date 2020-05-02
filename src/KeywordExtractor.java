@@ -27,7 +27,7 @@ public class KeywordExtractor {
     public static HashMap<String, Integer> computeTermFrequencies(String filename) {
         HashMap<String,Integer> words = new HashMap<String,Integer>();
 
-        try{
+        try {
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);printTopKeywords
             String line = br.readLine();
@@ -61,7 +61,7 @@ public class KeywordExtractor {
     public static HashMap<String, Integer> readDocumentFrequencies(String filename) {
         HashMap<String,Integer> wordFreq = new HashMap<String,Integer>();
 
-        try{
+        try
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
@@ -76,15 +76,14 @@ public class KeywordExtractor {
             br.close();
             fr.close();
 
-        }
-        catch(IOException e ){
+        } catch(IOException e ){
             System.out.println("*** IO error! Reading ***");
         }
 
         return wordFreq;
     }
 
-    public static HashMap<String, Double> computeTFIDF(HashMap<String, Integer> tfs, HashMap<String, Integer> dfs, double nDocs){
+    public static HashMap<String, Double> computeTFIDF(HashMap<String, Integer> tfs, HashMap<String, Integer> dfs, double nDocs) {
         // TF-IDF score: (w, d) = tf(w, d) / idf(w)
         HashMap<String,Double> score = new HashMap<String,Double>();
 
